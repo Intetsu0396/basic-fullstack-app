@@ -16,4 +16,17 @@ class User(db.Model):
             "id": self.id,
             "email": self.email,
             # do not serialize the password, its a security breach
+            
+        }
+    
+class Item(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=False, nullable=False)
+    price =db.Column(db.Integer, nullable=False)
+
+    def serialize(self):
+        return{
+            "id": self.id,
+            "name": self.name,
+            "price": self.price
         }
